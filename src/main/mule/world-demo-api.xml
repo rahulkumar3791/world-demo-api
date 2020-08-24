@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="a089ae1d-c2a2-4c1a-8109-283f214eebc7" basePath="/api" >
+		<http:listener-connection host="0.0.0.0" port="8089" />
+	</http:listener-config>
+	<flow name="world-demo-apiFlow" doc:id="b3123f93-be31-46a5-8662-b57a3e264bbb" >
+		<http:listener doc:name="Listener" doc:id="2139a119-b822-4841-8dcc-cd4546c2382a" config-ref="HTTP_Listener_config" path="/demo"/>
+		<set-payload value='#["World demo"]' doc:name="Set Payload" doc:id="897b8a07-ad50-48fc-b52b-2b81b05eb985" />
+		<logger level="INFO" doc:name="Logger" doc:id="e963ef0d-1d93-4247-8a07-0a9c1847aac0" message='#["App Name is : " ++ payload]'/>
+	</flow>
+</mule>
